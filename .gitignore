@@ -1,0 +1,6 @@
+# Nie ins Repo — bleiben nur auf dem Server
+secrets.php
+config.php
+
+# System
+.DS_Store

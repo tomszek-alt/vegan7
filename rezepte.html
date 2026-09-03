@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rezept-Datenbank — vegan7.de</title>
+<meta name="description" content="Alle 21 Rezepte der 7-Tage-Vegan-Challenge — filterbar nach Tag und Mahlzeit.">
+<link rel="stylesheet" href="/css/style.css?v=1">
+<meta name="ca-pub" content="ca-pub-4937837635392557">
+</head>
+<body>
+
+<nav class="main">
+  <a href="/" class="logo">vegan<span>7</span></a>
+  <div class="links">
+    <a href="/plan.html">Plan</a>
+    <a href="/rezepte.html" class="active">Rezepte</a>
+  </div>
+</nav>
+
+<section class="hero" style="grid-template-columns:1fr; padding-bottom:20px;">
+  <div>
+    <h1>Rezept-<span class="accent">Datenbank</span></h1>
+    <p>Alle 21 Rezepte der Challenge an einem Ort — nach Tag oder Mahlzeit filterbar.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="filters">
+    <select id="filter-tag">
+      <option value="">Alle Tage</option>
+      <option value="1">Tag 1</option>
+      <option value="2">Tag 2</option>
+      <option value="3">Tag 3</option>
+      <option value="4">Tag 4</option>
+      <option value="5">Tag 5</option>
+      <option value="6">Tag 6</option>
+      <option value="7">Tag 7</option>
+    </select>
+    <select id="filter-mahlzeit">
+      <option value="">Alle Mahlzeiten</option>
+      <option value="Frühstück">Frühstück</option>
+      <option value="Mittag">Mittag</option>
+      <option value="Abend">Abend</option>
+    </select>
+  </div>
+  <div class="cardgrid" data-recipes></div>
+</section>
+
+<div class="ad-slot">
+  <ins class="adsbygoogle"
+       style="display:block; width:100%;"
+       data-ad-client="ca-pub-4937837635392557"
+       data-ad-slot="0000000000"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+</div>
+
+<div class="newsletter">
+  <div>
+    <h2>Plan direkt ins Postfach</h2>
+    <p>Täglich eine kurze Erinnerung mit der Aufgabe des Tages — 7 E-Mails, dann ist Schluss.</p>
+  </div>
+  <form class="nform" data-newsletter-form>
+    <input type="email" name="email" placeholder="deine@email.de" required>
+    <button type="submit" class="cta">Anmelden</button>
+  </form>
+</div>
+
+<footer>
+  vegan7.de — Thomas Dziewiszek ·
+  <a href="/impressum.html">Impressum</a> ·
+  <a href="/datenschutz.html">Datenschutz</a>
+</footer>
+
+<script src="/js/cookie-consent.js?v=1"></script>
+<script src="/js/main.js?v=1"></script>
+</body>
+</html>

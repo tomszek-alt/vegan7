@@ -1,0 +1,212 @@
+[
+  {
+    "id": "t1-fruehstueck",
+    "tag": 1,
+    "mahlzeit": "Frühstück",
+    "titel": "Overnight Oats mit Apfel und Zimt",
+    "zeit": 10,
+    "schwer": "einfach",
+    "zutaten": ["80 g Haferflocken", "200 ml Hafermilch", "1 Apfel, gerieben", "1 TL Zimt", "1 EL Ahornsirup"],
+    "zubereitung": "Haferflocken mit Hafermilch, Zimt und Ahornsirup verrühren. Über Nacht im Kühlschrank ziehen lassen. Am Morgen mit geriebenem Apfel toppen."
+  },
+  {
+    "id": "t1-mittag",
+    "tag": 1,
+    "mahlzeit": "Mittag",
+    "titel": "Kichererbsen-Curry mit Reis",
+    "zeit": 25,
+    "schwer": "einfach",
+    "zutaten": ["1 Dose Kichererbsen", "1 Dose Kokosmilch", "2 EL Currypaste", "1 Zwiebel", "200 g Reis"],
+    "zubereitung": "Zwiebel andünsten, Currypaste kurz mitrösten, Kokosmilch und Kichererbsen zugeben, 15 Minuten köcheln. Mit Reis servieren."
+  },
+  {
+    "id": "t1-abend",
+    "tag": 1,
+    "mahlzeit": "Abend",
+    "titel": "Ofengemüse mit Hummus",
+    "zeit": 30,
+    "schwer": "einfach",
+    "zutaten": ["Zucchini", "Paprika", "rote Zwiebel", "Olivenöl", "200 g Hummus"],
+    "zubereitung": "Gemüse in Stücke schneiden, mit Öl und Salz mischen, 25 Minuten bei 200°C rösten. Mit Hummus servieren."
+  },
+  {
+    "id": "t2-fruehstueck",
+    "tag": 2,
+    "mahlzeit": "Frühstück",
+    "titel": "Tofu-Rührei mit Kurkuma",
+    "zeit": 15,
+    "schwer": "einfach",
+    "zutaten": ["200 g Naturtofu", "1 TL Kurkuma", "1 Prise Kala Namak", "Frühlingszwiebel"],
+    "zubereitung": "Tofu zerbröseln, mit Kurkuma und Kala Namak in der Pfanne 5 Minuten braten. Mit Frühlingszwiebel bestreuen."
+  },
+  {
+    "id": "t2-mittag",
+    "tag": 2,
+    "mahlzeit": "Mittag",
+    "titel": "Linsen-Bolognese mit Nudeln",
+    "zeit": 30,
+    "schwer": "mittel",
+    "zutaten": ["200 g rote Linsen", "1 Dose Tomaten", "1 Karotte", "1 Zwiebel", "300 g Vollkornnudeln"],
+    "zubereitung": "Zwiebel und Karotte andünsten, Linsen und Tomaten zugeben, 20 Minuten köcheln lassen. Über Nudeln servieren."
+  },
+  {
+    "id": "t2-abend",
+    "tag": 2,
+    "mahlzeit": "Abend",
+    "titel": "Asia-Pfanne mit Tofu",
+    "zeit": 20,
+    "schwer": "einfach",
+    "zutaten": ["200 g Tofu", "Brokkoli", "Karotte", "Sojasoße", "Ingwer"],
+    "zubereitung": "Tofu anbraten, Gemüse dazugeben, mit Sojasoße und Ingwer würzen, 8 Minuten braten."
+  },
+  {
+    "id": "t3-fruehstueck",
+    "tag": 3,
+    "mahlzeit": "Frühstück",
+    "titel": "Grüner Smoothie",
+    "zeit": 5,
+    "schwer": "einfach",
+    "zutaten": ["1 Banane", "Handvoll Spinat", "200 ml Hafermilch", "1 EL Erdnussbutter"],
+    "zubereitung": "Alle Zutaten im Mixer fein pürieren."
+  },
+  {
+    "id": "t3-mittag",
+    "tag": 3,
+    "mahlzeit": "Mittag",
+    "titel": "Falafel-Wrap",
+    "zeit": 25,
+    "schwer": "mittel",
+    "zutaten": ["6 Falafel", "1 Wrap", "Salat", "Tomate", "Tahin-Soße"],
+    "zubereitung": "Falafel braten oder backen, Wrap mit Salat, Tomate und Tahin-Soße füllen."
+  },
+  {
+    "id": "t3-abend",
+    "tag": 3,
+    "mahlzeit": "Abend",
+    "titel": "Kürbissuppe",
+    "zeit": 30,
+    "schwer": "einfach",
+    "zutaten": ["500 g Hokkaido-Kürbis", "1 Zwiebel", "400 ml Gemüsebrühe", "100 ml Kokosmilch"],
+    "zubereitung": "Kürbis und Zwiebel andünsten, mit Brühe ablöschen, 20 Minuten köcheln, pürieren, Kokosmilch unterrühren."
+  },
+  {
+    "id": "t4-fruehstueck",
+    "tag": 4,
+    "mahlzeit": "Frühstück",
+    "titel": "Chia-Pudding mit Beeren",
+    "zeit": 10,
+    "schwer": "einfach",
+    "zutaten": ["3 EL Chiasamen", "250 ml Mandelmilch", "Handvoll Beeren", "1 TL Ahornsirup"],
+    "zubereitung": "Chiasamen mit Mandelmilch verrühren, 4 Stunden oder über Nacht quellen lassen. Mit Beeren toppen."
+  },
+  {
+    "id": "t4-mittag",
+    "tag": 4,
+    "mahlzeit": "Mittag",
+    "titel": "Gebratener Reis mit Gemüse",
+    "zeit": 20,
+    "schwer": "einfach",
+    "zutaten": ["300 g gekochter Reis", "Erbsen", "Karotte", "Sojasoße", "Sesamöl"],
+    "zubereitung": "Gemüse anbraten, Reis dazugeben, mit Sojasoße und Sesamöl würzen, kurz durchbraten."
+  },
+  {
+    "id": "t4-abend",
+    "tag": 4,
+    "mahlzeit": "Abend",
+    "titel": "Gefüllte Süßkartoffel",
+    "zeit": 45,
+    "schwer": "mittel",
+    "zutaten": ["2 Süßkartoffeln", "1 Dose schwarze Bohnen", "Mais", "Avocado", "Limette"],
+    "zubereitung": "Süßkartoffeln 40 Minuten backen, halbieren, mit Bohnen, Mais und Avocado füllen, mit Limette beträufeln."
+  },
+  {
+    "id": "t5-fruehstueck",
+    "tag": 5,
+    "mahlzeit": "Frühstück",
+    "titel": "Porridge mit Bananen",
+    "zeit": 10,
+    "schwer": "einfach",
+    "zutaten": ["60 g Haferflocken", "200 ml Hafermilch", "1 Banane", "1 EL Mandelmus"],
+    "zubereitung": "Haferflocken mit Hafermilch aufkochen, 5 Minuten köcheln, mit Banane und Mandelmus servieren."
+  },
+  {
+    "id": "t5-mittag",
+    "tag": 5,
+    "mahlzeit": "Mittag",
+    "titel": "Quinoa-Salat mit Kichererbsen",
+    "zeit": 20,
+    "schwer": "einfach",
+    "zutaten": ["150 g Quinoa", "1 Dose Kichererbsen", "Gurke", "Tomate", "Zitronendressing"],
+    "zubereitung": "Quinoa kochen und abkühlen lassen, mit restlichen Zutaten mischen, mit Zitronendressing anmachen."
+  },
+  {
+    "id": "t5-abend",
+    "tag": 5,
+    "mahlzeit": "Abend",
+    "titel": "Veganes Chili sin Carne",
+    "zeit": 35,
+    "schwer": "mittel",
+    "zutaten": ["1 Dose Kidneybohnen", "1 Dose Mais", "1 Dose Tomaten", "Sojagranulat", "Paprika"],
+    "zubereitung": "Sojagranulat einweichen, mit Paprika andünsten, restliche Zutaten zugeben, 20 Minuten köcheln."
+  },
+  {
+    "id": "t6-fruehstueck",
+    "tag": 6,
+    "mahlzeit": "Frühstück",
+    "titel": "Pancakes mit Ahornsirup",
+    "zeit": 20,
+    "schwer": "mittel",
+    "zutaten": ["150 g Mehl", "200 ml Hafermilch", "1 TL Backpulver", "1 EL Ahornsirup"],
+    "zubereitung": "Alle Zutaten zu Teig verrühren, portionsweise in der Pfanne goldbraun backen."
+  },
+  {
+    "id": "t6-mittag",
+    "tag": 6,
+    "mahlzeit": "Mittag",
+    "titel": "Vegane Bowl mit Tempeh",
+    "zeit": 25,
+    "schwer": "mittel",
+    "zutaten": ["200 g Tempeh", "Reis", "Edamame", "Karotte", "Erdnusssoße"],
+    "zubereitung": "Tempeh anbraten, mit Reis, Edamame und Karotte in einer Bowl anrichten, mit Erdnusssoße beträufeln."
+  },
+  {
+    "id": "t6-abend",
+    "tag": 6,
+    "mahlzeit": "Abend",
+    "titel": "Pilz-Risotto",
+    "zeit": 40,
+    "schwer": "mittel",
+    "zutaten": ["200 g Risottoreis", "300 g Champignons", "Gemüsebrühe", "Weißwein", "Hefeflocken"],
+    "zubereitung": "Pilze anbraten, Reis zugeben, mit Wein ablöschen, nach und nach Brühe zugeben und cremig rühren, mit Hefeflocken verfeinern."
+  },
+  {
+    "id": "t7-fruehstueck",
+    "tag": 7,
+    "mahlzeit": "Frühstück",
+    "titel": "Müsli mit Sojajoghurt",
+    "zeit": 5,
+    "schwer": "einfach",
+    "zutaten": ["Sojajoghurt", "Müsli", "Beeren", "1 EL Kürbiskerne"],
+    "zubereitung": "Sojajoghurt in eine Schüssel geben, mit Müsli, Beeren und Kürbiskernen toppen."
+  },
+  {
+    "id": "t7-mittag",
+    "tag": 7,
+    "mahlzeit": "Mittag",
+    "titel": "Gemüse-Curry mit Naan",
+    "zeit": 30,
+    "schwer": "mittel",
+    "zutaten": ["Blumenkohl", "Kartoffel", "Kokosmilch", "Currypaste", "Naan-Brot"],
+    "zubereitung": "Gemüse andünsten, mit Kokosmilch und Currypaste ablöschen, 20 Minuten köcheln, mit Naan servieren."
+  },
+  {
+    "id": "t7-abend",
+    "tag": 7,
+    "mahlzeit": "Abend",
+    "titel": "Pizza mit Gemüse und Cashewkäse",
+    "zeit": 35,
+    "schwer": "mittel",
+    "zutaten": ["Pizzateig", "Tomatensoße", "Paprika", "Champignons", "Cashewkäse"],
+    "zubereitung": "Teig ausrollen, mit Tomatensoße bestreichen, mit Gemüse und Cashewkäse belegen, 15 Minuten bei 220°C backen."
+  }
+]
