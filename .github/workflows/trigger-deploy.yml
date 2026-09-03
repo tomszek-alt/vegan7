@@ -1,0 +1,22 @@
+name: Trigger Deploy
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  trigger-deploy:
+    name: deploy.php aufrufen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy-Endpunkt aufrufen
+        run: |
+          response=$(curl -s -o /tmp/response.txt -w "%{http_code}" "https://vegan7.de/deploy.php?secret=${{ secrets.DEPLOY_SECRET }}")
+          echo "HTTP Status: $response"
+          cat /tmp/response.txt
+          if [ "$response" -ne 200 ]; then
+            echo "Deploy fehlgeschlagen"
+            exit 1
+          fi
+ 
