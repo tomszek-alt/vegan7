@@ -1,10 +1,10 @@
 name: Trigger Deploy
-
+ 
 on:
   push:
     branches:
       - main
-
+ 
 jobs:
   trigger-deploy:
     name: deploy.php aufrufen
@@ -19,3 +19,4 @@ jobs:
             echo "Deploy fehlgeschlagen"
             exit 1
           fi
+ 
