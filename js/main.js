@@ -191,9 +191,42 @@
     });
   }
 
+  var FAKE_BANNER_QUOTES = [
+    { headline: "Stärker wird man nicht durch Zusehen.", sub: "7 Tage. Ein Plan. Kein Ausreden mehr." },
+    { headline: "Dein Comeback beginnt heute — nicht morgen.", sub: "Tag 1 wartet nicht auf die perfekte Stimmung." },
+    { headline: "Kein Motivations-Hoch nötig. Nur ein Plan.", sub: "Struktur schlägt Willenskraft." },
+    { headline: "Disziplin schmeckt besser als Ausreden.", sub: "7 Tage, 21 Rezepte, null Kompromisse." },
+    { headline: "Champions kochen ihr Gemüse selbst.", sub: "Und markieren danach den Tag als erledigt." },
+    { headline: "Der Ring füllt sich nicht von allein.", sub: "Ein Tag nach dem anderen." },
+    { headline: "Vegan ist kein Verzicht. Es ist ein Level-up.", sub: "Finde es in 7 Tagen selbst heraus." },
+    { headline: "Du bist härter als deine Ausrede.", sub: "Und das Frühstück steht schon bereit." },
+    { headline: "Kleine Schritte. Großer Unterschied.", sub: "Jeden Tag ein Häkchen mehr." },
+    { headline: "Kein Spitzensportler wurde am Sofa geboren.", sub: "Der erste Schritt ist ein Rezept." },
+    { headline: "Kraft kommt aus Konsequenz, nicht aus Perfektion.", sub: "7 Tage reichen, um es zu spüren." },
+    { headline: "Dein Körper merkt sich jeden geschafften Tag.", sub: "Fang mit Tag 1 an." },
+    { headline: "Der Unterschied zwischen Wunsch und Ziel? Ein Plan.", sub: "Du hast ihn schon vor dir." },
+    { headline: "Iss wie ein Athlet. Denk wie ein Anfänger.", sub: "Beides reicht für die ersten 7 Tage." },
+    { headline: "Fortschritt ist lauter als Perfektion.", sub: "Ein Tag, ein Rezept, ein Häkchen." },
+    { headline: "Die Challenge wartet nicht auf Montag.", sub: "Heute ist ein guter Tag 1." },
+    { headline: "Nicht motiviert? Dann eben diszipliniert.", sub: "Der Plan denkt für dich mit." },
+    { headline: "Sieben Tage können mehr verändern als du denkst.", sub: "Frag einfach jeden, der sie durchgezogen hat." },
+    { headline: "Dein stärkstes Workout heute? Kochen statt bestellen.", sub: "Rezept für Rezept zum Ziel." },
+    { headline: "Du brauchst keine Ausrüstung. Nur einen Teller.", sub: "Und sieben Tage Durchhaltevermögen." }
+  ];
+
+  function renderFakeBanner() {
+    var headlineEl = document.querySelector(".fb-headline");
+    var subEl = document.querySelector(".fb-sub");
+    if (!headlineEl || !subEl) return;
+    var pick = FAKE_BANNER_QUOTES[Math.floor(Math.random() * FAKE_BANNER_QUOTES.length)];
+    headlineEl.textContent = pick.headline;
+    subEl.textContent = pick.sub;
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     renderRing();
     renderDayCards();
+    renderFakeBanner();
     initNewsletterForm();
 
     if (document.querySelector("[data-plan]") || document.querySelector("[data-recipes]")) {
