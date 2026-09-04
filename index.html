@@ -1,100 +1,90 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>vegan7.de — Die 7-Tage-Vegan-Challenge</title>
-<meta name="description" content="Ein klarer 7-Tage-Plan für den Umstieg auf vegane Ernährung. Rezepte, Einkaufslisten und ein täglicher Fortschritts-Tracker.">
-<link rel="stylesheet" href="/css/style.css?v=2">
-<meta name="ca-pub" content="ca-pub-4937837635392557">
+<title>vegan7 — Choose your language / Sprache wählen</title>
+<link rel="stylesheet" href="/css/style.css?v=3">
+<link rel="alternate" hreflang="de" href="https://vegan7.de/de/">
+<link rel="alternate" hreflang="en" href="https://vegan7.de/en/">
+<link rel="alternate" hreflang="fr" href="https://vegan7.de/fr/">
+<link rel="alternate" hreflang="es" href="https://vegan7.de/es/">
+<link rel="alternate" hreflang="x-default" href="https://vegan7.de/de/">
+<style>
+  .lang-picker{
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:24px;
+  }
+  .lang-picker .logo-big{ font-family:var(--font-display); font-size:2rem; font-weight:700; margin-bottom:8px; }
+  .lang-picker .logo-big span{ color:var(--mint); }
+  .lang-picker p{ color:var(--grey); margin-bottom:30px; }
+  .lang-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; max-width:360px; width:100%; }
+  .lang-grid a{
+    display:block; padding:18px; border-radius:14px; text-decoration:none;
+    background:var(--panel); border:1px solid rgba(255,255,255,0.08); color:var(--white);
+    font-weight:600; transition:border-color .15s;
+  }
+  .lang-grid a:hover{ border-color:rgba(62,207,142,0.4); }
+  .lang-grid .flag{ font-size:1.8rem; display:block; margin-bottom:6px; }
+  #suggestion{
+    display:none; margin-top:26px; padding:16px 20px; background:var(--panel);
+    border:1px solid rgba(62,207,142,0.3); border-radius:12px; max-width:360px;
+  }
+  #suggestion p{ margin-bottom:12px; color:var(--white); font-size:0.9rem; }
+  #suggestion a.cta{ display:inline-block; }
+</style>
 </head>
 <body>
 
-<nav class="main">
-  <a href="/" class="logo">vegan<span>7</span></a>
-  <div class="links">
-    <a href="/plan.html">Plan</a>
-    <a href="/rezepte.html">Rezepte</a>
-  </div>
-</nav>
+<div class="lang-picker">
+  <div class="logo-big">vegan<span>7</span></div>
+  <p>Choose your language · Sprache wählen · Choisis ta langue · Elige tu idioma</p>
 
-<section class="hero">
-  <div>
-    <h1>Die <span class="accent">7-Tage</span><br>Vegan Challenge.</h1>
-    <p>Ein klarer Plan statt vager Vorsätze. Jeden Tag eine Aufgabe, ein Rezept, ein Häkchen — ohne dass du dein ganzes Leben umkrempeln musst.</p>
-    <a href="/plan.html" class="cta">Jetzt starten →</a>
+  <div class="lang-grid">
+    <a href="/de/"><span class="flag">🇩🇪</span>Deutsch</a>
+    <a href="/en/"><span class="flag">🇬🇧</span>English</a>
+    <a href="/fr/"><span class="flag">🇫🇷</span>Français</a>
+    <a href="/es/"><span class="flag">🇪🇸</span>Español</a>
   </div>
-  <div class="ring-card">
-    <div class="ring" data-ring>
-      <div class="ring-text">
-        <div class="big">0/7</div>
-        <div class="small">Tage geschafft</div>
-      </div>
-    </div>
-    <p class="hint">Dein Fortschritt wird lokal in deinem Browser gespeichert.</p>
-  </div>
-</section>
 
-<div class="ad-slot">
-  <div class="fake-banner">
-    <div class="fb-icon">💪</div>
-    <div class="fb-text">
-      <div class="fb-kicker">CHALLENGE MODUS</div>
-      <div class="fb-headline">Stärker wird man nicht durch Zusehen.</div>
-      <div class="fb-sub">7 Tage. Ein Plan. Kein Ausreden mehr.</div>
-    </div>
-    <a href="/plan.html" class="fb-cta">Los geht's →</a>
+  <div id="suggestion">
+    <p id="suggestion-text"></p>
+    <a id="suggestion-link" href="#" class="cta">Continue →</a>
   </div>
-  <ins class="adsbygoogle"
-       style="display:block; width:100%; margin-top:16px;"
-       data-ad-client="ca-pub-4937837635392557"
-       data-ad-slot="0000000000"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
 </div>
 
-<section class="section">
-  <div class="section-head">
-    <h2>So funktioniert's</h2>
-  </div>
-  <div class="cardgrid">
-    <div class="dcard">
-      <div class="dcard-top"><div class="badge">1</div></div>
-      <h3>Plan ansehen</h3>
-      <p>7 Tage, jeweils Frühstück, Mittag und Abend — alles vorbereitet.</p>
-    </div>
-    <div class="dcard">
-      <div class="dcard-top"><div class="badge">2</div></div>
-      <h3>Kochen</h3>
-      <p>Einfache Rezepte mit Zutaten, die es in jedem Supermarkt gibt.</p>
-    </div>
-    <div class="dcard">
-      <div class="dcard-top"><div class="badge">3</div></div>
-      <h3>Abhaken</h3>
-      <p>Jeden geschafften Tag markieren und den Fortschritts-Ring füllen.</p>
-    </div>
-  </div>
-</section>
+<script>
+(function () {
+  var SUPPORTED = ["de", "en", "fr", "es"];
+  var MESSAGES = {
+    de: { text: "Es sieht so aus, als würdest du Deutsch bevorzugen.", cta: "Weiter auf Deutsch →" },
+    en: { text: "Looks like you prefer English.", cta: "Continue in English →" },
+    fr: { text: "On dirait que tu préfères le français.", cta: "Continuer en français →" },
+    es: { text: "Parece que prefieres el español.", cta: "Continuar en español →" }
+  };
 
-<div class="newsletter">
-  <div>
-    <h2>Plan direkt ins Postfach</h2>
-    <p>Täglich eine kurze Erinnerung mit der Aufgabe des Tages — 7 E-Mails, dann ist Schluss.</p>
-  </div>
-  <form class="nform" data-newsletter-form>
-    <input type="email" name="email" placeholder="deine@email.de" required>
-    <button type="submit" class="cta">Anmelden</button>
-  </form>
-</div>
+  function detectLang() {
+    var langs = navigator.languages || [navigator.language || navigator.userLanguage];
+    for (var i = 0; i < langs.length; i++) {
+      var short = (langs[i] || "").slice(0, 2).toLowerCase();
+      if (SUPPORTED.indexOf(short) !== -1) return short;
+    }
+    return null;
+  }
 
-<footer>
-  vegan7.de ·
-  <a href="/impressum.html">Impressum</a> ·
-  <a href="/datenschutz.html">Datenschutz</a>
-</footer>
+  var detected = detectLang();
+  if (detected) {
+    var box = document.getElementById("suggestion");
+    var textEl = document.getElementById("suggestion-text");
+    var linkEl = document.getElementById("suggestion-link");
+    textEl.textContent = MESSAGES[detected].text;
+    linkEl.textContent = MESSAGES[detected].cta;
+    linkEl.href = "/" + detected + "/";
+    box.style.display = "block";
+  }
+})();
+</script>
 
-<script src="/js/cookie-consent.js?v=1"></script>
-<script src="/js/main.js?v=2"></script>
 </body>
 </html>

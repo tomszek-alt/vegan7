@@ -35,6 +35,14 @@ nav.main .links a{ color:var(--grey); text-decoration:none; font-size:0.88rem; m
 nav.main .links a.active{ color:var(--white); }
 .nav-toggle{ display:none; }
 
+.lang-switch{ display:flex; gap:10px; margin-left:20px; }
+.lang-switch a{
+  color:var(--grey); text-decoration:none; font-size:0.78rem; font-weight:600;
+  padding:4px 8px; border-radius:6px; letter-spacing:0.5px;
+}
+.lang-switch a.active{ color:var(--mint); background:rgba(62,207,142,0.12); }
+.lang-switch a:hover{ color:var(--white); }
+
 /* Hero / general sections */
 .container{ max-width:1100px; margin:0 auto; padding:0 24px; }
 
@@ -218,4 +226,6 @@ footer a{ color:var(--grey); text-decoration:underline; margin:0 6px; }
   .hero{ grid-template-columns:1fr; }
   .hero h1{ font-size:2.1rem; }
   nav.main .links{ display:none; }
+  nav.main{ flex-wrap:wrap; gap:10px; }
+  .lang-switch{ margin-left:0; }
 }

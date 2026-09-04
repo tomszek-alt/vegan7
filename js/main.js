@@ -1,6 +1,118 @@
 (function () {
-  var PROGRESS_KEY = "vegan7_progress"; // Array mit abgeschlossenen Tagen, z.B. [1,2,3]
-  var DATA_URL = "/data/rezepte.json";
+  var PROGRESS_KEY = "vegan7_progress";
+
+  var CURRENT_LANG = (function () {
+    var seg = window.location.pathname.split("/")[1];
+    return ["de", "en", "fr", "es"].indexOf(seg) !== -1 ? seg : "de";
+  })();
+  var DATA_URL = "/data/rezepte." + CURRENT_LANG + ".json";
+
+  var I18N = {
+    de: {
+      day: "Tag", min: "Min.",
+      showRecipe: "Zutaten & Zubereitung anzeigen",
+      markDone: "Als erledigt markieren", markOpen: "Als offen markieren",
+      noRecipes: "Keine Rezepte gefunden.",
+      sending: "Wird angemeldet …",
+      success: "Fast geschafft — bitte bestätige deine Anmeldung per E-Mail.",
+      genericError: "Anmeldung fehlgeschlagen. Bitte später erneut versuchen.",
+      connError: "Verbindung fehlgeschlagen. Bitte später erneut versuchen.",
+      daysDone: "Tage geschafft",
+      quotes: [
+        { headline: "Stärker wird man nicht durch Zusehen.", sub: "7 Tage. Ein Plan. Kein Ausreden mehr." },
+        { headline: "Dein Comeback beginnt heute — nicht morgen.", sub: "Tag 1 wartet nicht auf die perfekte Stimmung." },
+        { headline: "Kein Motivations-Hoch nötig. Nur ein Plan.", sub: "Struktur schlägt Willenskraft." },
+        { headline: "Disziplin schmeckt besser als Ausreden.", sub: "7 Tage, 21 Rezepte, null Kompromisse." },
+        { headline: "Champions kochen ihr Gemüse selbst.", sub: "Und markieren danach den Tag als erledigt." },
+        { headline: "Der Ring füllt sich nicht von allein.", sub: "Ein Tag nach dem anderen." },
+        { headline: "Vegan ist kein Verzicht. Es ist ein Level-up.", sub: "Finde es in 7 Tagen selbst heraus." },
+        { headline: "Du bist härter als deine Ausrede.", sub: "Und das Frühstück steht schon bereit." },
+        { headline: "Kleine Schritte. Großer Unterschied.", sub: "Jeden Tag ein Häkchen mehr." },
+        { headline: "Kein Spitzensportler wurde am Sofa geboren.", sub: "Der erste Schritt ist ein Rezept." },
+        { headline: "Kraft kommt aus Konsequenz, nicht aus Perfektion.", sub: "7 Tage reichen, um es zu spüren." },
+        { headline: "Dein Körper merkt sich jeden geschafften Tag.", sub: "Fang mit Tag 1 an." },
+        { headline: "Der Unterschied zwischen Wunsch und Ziel? Ein Plan.", sub: "Du hast ihn schon vor dir." },
+        { headline: "Iss wie ein Athlet. Denk wie ein Anfänger.", sub: "Beides reicht für die ersten 7 Tage." },
+        { headline: "Fortschritt ist lauter als Perfektion.", sub: "Ein Tag, ein Rezept, ein Häkchen." },
+        { headline: "Die Challenge wartet nicht auf Montag.", sub: "Heute ist ein guter Tag 1." },
+        { headline: "Nicht motiviert? Dann eben diszipliniert.", sub: "Der Plan denkt für dich mit." },
+        { headline: "Sieben Tage können mehr verändern als du denkst.", sub: "Frag einfach jeden, der sie durchgezogen hat." },
+        { headline: "Dein stärkstes Workout heute? Kochen statt bestellen.", sub: "Rezept für Rezept zum Ziel." },
+        { headline: "Du brauchst keine Ausrüstung. Nur einen Teller.", sub: "Und sieben Tage Durchhaltevermögen." }
+      ]
+    },
+    en: {
+      day: "Day", min: "min",
+      showRecipe: "Show ingredients & steps",
+      markDone: "Mark as done", markOpen: "Mark as open",
+      noRecipes: "No recipes found.",
+      sending: "Signing up …",
+      success: "Almost there — please confirm your signup by email.",
+      genericError: "Signup failed. Please try again later.",
+      connError: "Connection failed. Please try again later.",
+      daysDone: "days done",
+      quotes: [
+        { headline: "You don't get stronger by watching.", sub: "7 days. One plan. No more excuses." },
+        { headline: "Your comeback starts today — not tomorrow.", sub: "Day 1 doesn't wait for the perfect mood." },
+        { headline: "No motivation high required. Just a plan.", sub: "Structure beats willpower." },
+        { headline: "Discipline tastes better than excuses.", sub: "7 days, 21 recipes, zero compromises." },
+        { headline: "Champions cook their own vegetables.", sub: "Then mark the day as done." },
+        { headline: "The ring doesn't fill itself.", sub: "One day at a time." },
+        { headline: "Vegan isn't a sacrifice. It's a level-up.", sub: "Find out for yourself in 7 days." },
+        { headline: "You're tougher than your excuse.", sub: "And breakfast is already sorted." },
+        { headline: "Small steps. Big difference.", sub: "One more checkmark every day." },
+        { headline: "No elite athlete was built on the couch.", sub: "The first step is a recipe." }
+      ]
+    },
+    fr: {
+      day: "Jour", min: "min",
+      showRecipe: "Voir ingrédients & préparation",
+      markDone: "Marquer comme fait", markOpen: "Marquer comme non fait",
+      noRecipes: "Aucune recette trouvée.",
+      sending: "Inscription en cours …",
+      success: "Presque terminé — confirme ton inscription par e-mail.",
+      genericError: "Échec de l'inscription. Réessaie plus tard.",
+      connError: "Échec de la connexion. Réessaie plus tard.",
+      daysDone: "jours réussis",
+      quotes: [
+        { headline: "On ne devient pas plus fort en regardant.", sub: "7 jours. Un plan. Plus d'excuses." },
+        { headline: "Ton renouveau commence aujourd'hui, pas demain.", sub: "Le jour 1 n'attend pas la motivation parfaite." },
+        { headline: "Pas besoin de motivation. Juste un plan.", sub: "La structure bat la volonté." },
+        { headline: "La discipline a meilleur goût que les excuses.", sub: "7 jours, 21 recettes, zéro compromis." },
+        { headline: "Les champions cuisinent leurs légumes eux-mêmes.", sub: "Puis cochent la journée comme terminée." },
+        { headline: "L'anneau ne se remplit pas tout seul.", sub: "Un jour après l'autre." },
+        { headline: "Le végétal n'est pas un sacrifice. C'est un niveau supérieur.", sub: "Découvre-le en 7 jours." },
+        { headline: "Tu es plus fort que ton excuse.", sub: "Et le petit-déjeuner est déjà prêt." },
+        { headline: "Petits pas. Grande différence.", sub: "Une case cochée de plus chaque jour." },
+        { headline: "Aucun athlète n'est né sur le canapé.", sub: "Le premier pas, c'est une recette." }
+      ]
+    },
+    es: {
+      day: "Día", min: "min",
+      showRecipe: "Ver ingredientes y preparación",
+      markDone: "Marcar como hecho", markOpen: "Marcar como pendiente",
+      noRecipes: "No se encontraron recetas.",
+      sending: "Suscribiendo …",
+      success: "Casi listo — confirma tu suscripción por correo.",
+      genericError: "Error al suscribirse. Inténtalo más tarde.",
+      connError: "Fallo de conexión. Inténtalo más tarde.",
+      daysDone: "días completados",
+      quotes: [
+        { headline: "No te haces más fuerte mirando.", sub: "7 días. Un plan. Sin más excusas." },
+        { headline: "Tu regreso empieza hoy, no mañana.", sub: "El día 1 no espera al ánimo perfecto." },
+        { headline: "No hace falta motivación. Solo un plan.", sub: "La estructura vence a la fuerza de voluntad." },
+        { headline: "La disciplina sabe mejor que las excusas.", sub: "7 días, 21 recetas, cero excusas." },
+        { headline: "Los campeones cocinan sus propias verduras.", sub: "Y luego marcan el día como hecho." },
+        { headline: "El anillo no se llena solo.", sub: "Un día a la vez." },
+        { headline: "Vegano no es sacrificio. Es subir de nivel.", sub: "Descúbrelo tú mismo en 7 días." },
+        { headline: "Eres más fuerte que tu excusa.", sub: "Y el desayuno ya está listo." },
+        { headline: "Pasos pequeños. Gran diferencia.", sub: "Una marca más cada día." },
+        { headline: "Ningún atleta se hizo en el sofá.", sub: "El primer paso es una receta." }
+      ]
+    }
+  };
+
+  var T = I18N[CURRENT_LANG] || I18N.de;
 
   function getProgress() {
     try {
@@ -59,9 +171,15 @@
 
   function fetchRecipes() {
     return fetch(DATA_URL).then(function (r) {
-      if (!r.ok) throw new Error("Rezepte konnten nicht geladen werden");
+      if (!r.ok) throw new Error("Recipes could not be loaded");
       return r.json();
     });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
   }
 
   function renderPlan(recipes) {
@@ -80,15 +198,15 @@
       html += '<div class="dcard" data-day="' + day + '" id="tag-' + day + '">';
       html += '<div class="dcard-top"><div class="badge">' + day + "</div>";
       html += '<span class="check" style="display:' + (isDone ? "inline" : "none") + '">✓</span></div>';
-      html += "<h3>Tag " + day + "</h3>";
+      html += "<h3>" + T.day + " " + day + "</h3>";
       meals.forEach(function (m) {
-        html += '<p><strong>' + escapeHtml(m.mahlzeit) + ":</strong> " + escapeHtml(m.titel) + "</p>";
+        html += "<p><strong>" + escapeHtml(m.mahlzeit) + ":</strong> " + escapeHtml(m.titel) + "</p>";
       });
       html +=
         '<button class="cta secondary" style="margin-top:12px;width:100%" onclick="toggleDay(' +
         day +
         ')">' +
-        (isDone ? "Als offen markieren" : "Als erledigt markieren") +
+        (isDone ? T.markOpen : T.markDone) +
         "</button>";
       html += "</div>";
     }
@@ -112,13 +230,13 @@
       filtered.forEach(function (r) {
         html += '<div class="rcard" id="' + r.id + '">';
         html += '<div class="meta">';
-        html += '<span class="tag-pill mint">Tag ' + r.tag + "</span>";
+        html += '<span class="tag-pill mint">' + T.day + " " + r.tag + "</span>";
         html += '<span class="tag-pill">' + escapeHtml(r.mahlzeit) + "</span>";
-        html += '<span class="tag-pill">' + r.zeit + " Min.</span>";
+        html += '<span class="tag-pill">' + r.zeit + " " + T.min + "</span>";
         html += '<span class="tag-pill">' + escapeHtml(r.schwer) + "</span>";
         html += "</div>";
         html += "<h3>" + escapeHtml(r.titel) + "</h3>";
-        html += "<details><summary>Zutaten & Zubereitung anzeigen</summary>";
+        html += "<details><summary>" + T.showRecipe + "</summary>";
         html += "<ul>";
         r.zutaten.forEach(function (z) {
           html += "<li>" + escapeHtml(z) + "</li>";
@@ -127,7 +245,7 @@
         html += '<div class="zubereitung">' + escapeHtml(r.zubereitung) + "</div>";
         html += "</details></div>";
       });
-      container.innerHTML = html || '<p style="color:var(--grey)">Keine Rezepte gefunden.</p>';
+      container.innerHTML = html || '<p style="color:var(--grey)">' + T.noRecipes + "</p>";
     }
 
     if (dayFilter) dayFilter.addEventListener("change", draw);
@@ -135,10 +253,13 @@
     draw();
   }
 
-  function escapeHtml(str) {
-    var div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
+  function renderFakeBanner() {
+    var headlineEl = document.querySelector(".fb-headline");
+    var subEl = document.querySelector(".fb-sub");
+    if (!headlineEl || !subEl || !T.quotes || !T.quotes.length) return;
+    var pick = T.quotes[Math.floor(Math.random() * T.quotes.length)];
+    headlineEl.textContent = pick.headline;
+    subEl.textContent = pick.sub;
   }
 
   function initNewsletterForm() {
@@ -158,13 +279,13 @@
         }
 
         button.disabled = true;
-        msgEl.textContent = "Wird angemeldet …";
+        msgEl.textContent = T.sending;
         msgEl.className = "nform-msg";
 
         fetch("/subscribe.php", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email }),
+          body: JSON.stringify({ email: email, lang: CURRENT_LANG }),
         })
           .then(function (r) {
             return r.json().then(function (data) {
@@ -174,53 +295,21 @@
           .then(function (res) {
             button.disabled = false;
             if (res.ok) {
-              msgEl.textContent = "Fast geschafft — bitte bestätige deine Anmeldung per E-Mail.";
+              msgEl.textContent = T.success;
               msgEl.className = "nform-msg ok";
               emailInput.value = "";
             } else {
-              msgEl.textContent = res.data.error || "Anmeldung fehlgeschlagen. Bitte später erneut versuchen.";
+              msgEl.textContent = res.data.error || T.genericError;
               msgEl.className = "nform-msg err";
             }
           })
           .catch(function () {
             button.disabled = false;
-            msgEl.textContent = "Verbindung fehlgeschlagen. Bitte später erneut versuchen.";
+            msgEl.textContent = T.connError;
             msgEl.className = "nform-msg err";
           });
       });
     });
-  }
-
-  var FAKE_BANNER_QUOTES = [
-    { headline: "Stärker wird man nicht durch Zusehen.", sub: "7 Tage. Ein Plan. Kein Ausreden mehr." },
-    { headline: "Dein Comeback beginnt heute — nicht morgen.", sub: "Tag 1 wartet nicht auf die perfekte Stimmung." },
-    { headline: "Kein Motivations-Hoch nötig. Nur ein Plan.", sub: "Struktur schlägt Willenskraft." },
-    { headline: "Disziplin schmeckt besser als Ausreden.", sub: "7 Tage, 21 Rezepte, null Kompromisse." },
-    { headline: "Champions kochen ihr Gemüse selbst.", sub: "Und markieren danach den Tag als erledigt." },
-    { headline: "Der Ring füllt sich nicht von allein.", sub: "Ein Tag nach dem anderen." },
-    { headline: "Vegan ist kein Verzicht. Es ist ein Level-up.", sub: "Finde es in 7 Tagen selbst heraus." },
-    { headline: "Du bist härter als deine Ausrede.", sub: "Und das Frühstück steht schon bereit." },
-    { headline: "Kleine Schritte. Großer Unterschied.", sub: "Jeden Tag ein Häkchen mehr." },
-    { headline: "Kein Spitzensportler wurde am Sofa geboren.", sub: "Der erste Schritt ist ein Rezept." },
-    { headline: "Kraft kommt aus Konsequenz, nicht aus Perfektion.", sub: "7 Tage reichen, um es zu spüren." },
-    { headline: "Dein Körper merkt sich jeden geschafften Tag.", sub: "Fang mit Tag 1 an." },
-    { headline: "Der Unterschied zwischen Wunsch und Ziel? Ein Plan.", sub: "Du hast ihn schon vor dir." },
-    { headline: "Iss wie ein Athlet. Denk wie ein Anfänger.", sub: "Beides reicht für die ersten 7 Tage." },
-    { headline: "Fortschritt ist lauter als Perfektion.", sub: "Ein Tag, ein Rezept, ein Häkchen." },
-    { headline: "Die Challenge wartet nicht auf Montag.", sub: "Heute ist ein guter Tag 1." },
-    { headline: "Nicht motiviert? Dann eben diszipliniert.", sub: "Der Plan denkt für dich mit." },
-    { headline: "Sieben Tage können mehr verändern als du denkst.", sub: "Frag einfach jeden, der sie durchgezogen hat." },
-    { headline: "Dein stärkstes Workout heute? Kochen statt bestellen.", sub: "Rezept für Rezept zum Ziel." },
-    { headline: "Du brauchst keine Ausrüstung. Nur einen Teller.", sub: "Und sieben Tage Durchhaltevermögen." }
-  ];
-
-  function renderFakeBanner() {
-    var headlineEl = document.querySelector(".fb-headline");
-    var subEl = document.querySelector(".fb-sub");
-    if (!headlineEl || !subEl) return;
-    var pick = FAKE_BANNER_QUOTES[Math.floor(Math.random() * FAKE_BANNER_QUOTES.length)];
-    headlineEl.textContent = pick.headline;
-    subEl.textContent = pick.sub;
   }
 
   document.addEventListener("DOMContentLoaded", function () {

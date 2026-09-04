@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recipe Database — vegan7</title>
+<meta name="description" content="All 21 recipes of the 7-day vegan challenge — filterable by day and meal.">
+<link rel="stylesheet" href="/css/style.css?v=3">
+<meta name="ca-pub" content="ca-pub-4937837635392557">
+<link rel="alternate" hreflang="de" href="https://vegan7.de/de/rezepte.html">
+<link rel="alternate" hreflang="en" href="https://vegan7.de/en/rezepte.html">
+<link rel="alternate" hreflang="fr" href="https://vegan7.de/fr/rezepte.html">
+<link rel="alternate" hreflang="es" href="https://vegan7.de/es/rezepte.html">
+<link rel="alternate" hreflang="x-default" href="https://vegan7.de/de/rezepte.html">
+</head>
+<body>
+
+<nav class="main">
+  <a href="/en/" class="logo">vegan<span>7</span></a>
+  <div class="links">
+    <a href="/en/plan.html">Plan</a>
+    <a href="/en/rezepte.html" class="active">Recipes</a>
+  </div>
+  <div class="lang-switch"><a href="/de/rezepte.html">DE</a> <a href="/en/rezepte.html" class="active">EN</a> <a href="/fr/rezepte.html">FR</a> <a href="/es/rezepte.html">ES</a></div>
+</nav>
+
+<section class="hero" style="grid-template-columns:1fr; padding-bottom:20px;">
+  <div>
+    <h1>Recipe <span class="accent">Database</span></h1>
+    <p>All 21 recipes of the challenge in one place — filterable by day or meal.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="filters">
+    <select id="filter-tag">
+      <option value="">All days</option>
+      <option value="1">Day 1</option>
+      <option value="2">Day 2</option>
+      <option value="3">Day 3</option>
+      <option value="4">Day 4</option>
+      <option value="5">Day 5</option>
+      <option value="6">Day 6</option>
+      <option value="7">Day 7</option>
+    </select>
+    <select id="filter-mahlzeit">
+      <option value="">All meals</option>
+      <option value="Breakfast">Breakfast</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Dinner">Dinner</option>
+    </select>
+  </div>
+  <div class="cardgrid" data-recipes></div>
+</section>
+
+<div class="ad-slot">
+  <ins class="adsbygoogle"
+       style="display:block; width:100%;"
+       data-ad-client="ca-pub-4937837635392557"
+       data-ad-slot="0000000000"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+</div>
+
+<div class="newsletter">
+  <div>
+    <h2>The plan in your inbox</h2>
+    <p>A short daily reminder with the task of the day — 7 emails, then it's done.</p>
+  </div>
+  <form class="nform" data-newsletter-form>
+    <input type="email" name="email" placeholder="your@email.com" required>
+    <button type="submit" class="cta">Subscribe</button>
+  </form>
+</div>
+
+<footer>
+  vegan7.de ·
+  <a href="/en/impressum.html">Legal Notice</a> ·
+  <a href="/en/datenschutz.html">Privacy Policy</a>
+</footer>
+
+<script src="/js/cookie-consent.js?v=1"></script>
+<script src="/js/main.js?v=2"></script>
+</body>
+</html>
