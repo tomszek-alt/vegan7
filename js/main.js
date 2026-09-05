@@ -15,12 +15,26 @@
       day: "Tag", min: "Min.",
       showRecipe: "Zutaten & Zubereitung anzeigen",
       markDone: "Als erledigt markieren", doneLabel: "Erledigt",
+      confirmReset: "Wirklich zurücksetzen?",
       noRecipes: "Keine Rezepte gefunden.",
       sending: "Wird angemeldet …",
       success: "Fast geschafft — bitte bestätige deine Anmeldung per E-Mail.",
       genericError: "Anmeldung fehlgeschlagen. Bitte später erneut versuchen.",
       connError: "Verbindung fehlgeschlagen. Bitte später erneut versuchen.",
       daysDone: "Tage geschafft",
+      share: {
+        title: "🎉 Tag {day} geschafft!",
+        titleFinal: "🏆 Challenge komplett geschafft!",
+        subtitle: "Teile deinen Fortschritt mit anderen.",
+        subtitleFinal: "7 von 7 Tagen — das ist eine Leistung wert, sie zu teilen!",
+        shareBtn: "Jetzt teilen",
+        whatsapp: "Per WhatsApp teilen",
+        copy: "Text kopieren",
+        copied: "Kopiert!",
+        close: "Schließen",
+        text: "Ich habe Tag {day} von 7 der vegan7 Challenge geschafft! 💪🌱 Mach mit:",
+        textFinal: "Ich habe die komplette 7-Tage-Vegan-Challenge geschafft! 🏆🌱 Mach mit:"
+      },
       quotes: [
         { headline: "Stärker wird man nicht durch Zusehen.", sub: "7 Tage. Ein Plan. Kein Ausreden mehr." },
         { headline: "Dein Comeback beginnt heute — nicht morgen.", sub: "Tag 1 wartet nicht auf die perfekte Stimmung." },
@@ -48,12 +62,26 @@
       day: "Day", min: "min",
       showRecipe: "Show ingredients & steps",
       markDone: "Mark as done", doneLabel: "Done",
+      confirmReset: "Really reset?",
       noRecipes: "No recipes found.",
       sending: "Signing up …",
       success: "Almost there — please confirm your signup by email.",
       genericError: "Signup failed. Please try again later.",
       connError: "Connection failed. Please try again later.",
       daysDone: "days done",
+      share: {
+        title: "🎉 Day {day} done!",
+        titleFinal: "🏆 Challenge complete!",
+        subtitle: "Share your progress with others.",
+        subtitleFinal: "7 out of 7 days — that's worth sharing!",
+        shareBtn: "Share now",
+        whatsapp: "Share via WhatsApp",
+        copy: "Copy text",
+        copied: "Copied!",
+        close: "Close",
+        text: "I just finished day {day} of 7 in the vegan7 challenge! 💪🌱 Join me:",
+        textFinal: "I completed the entire 7-day vegan challenge! 🏆🌱 Join me:"
+      },
       quotes: [
         { headline: "You don't get stronger by watching.", sub: "7 days. One plan. No more excuses." },
         { headline: "Your comeback starts today — not tomorrow.", sub: "Day 1 doesn't wait for the perfect mood." },
@@ -71,12 +99,26 @@
       day: "Jour", min: "min",
       showRecipe: "Voir ingrédients & préparation",
       markDone: "Marquer comme fait", doneLabel: "Fait",
+      confirmReset: "Vraiment réinitialiser ?",
       noRecipes: "Aucune recette trouvée.",
       sending: "Inscription en cours …",
       success: "Presque terminé — confirme ton inscription par e-mail.",
       genericError: "Échec de l'inscription. Réessaie plus tard.",
       connError: "Échec de la connexion. Réessaie plus tard.",
       daysDone: "jours réussis",
+      share: {
+        title: "🎉 Jour {day} réussi !",
+        titleFinal: "🏆 Défi terminé !",
+        subtitle: "Partage ta progression avec les autres.",
+        subtitleFinal: "7 jours sur 7 — ça mérite d'être partagé !",
+        shareBtn: "Partager",
+        whatsapp: "Partager via WhatsApp",
+        copy: "Copier le texte",
+        copied: "Copié !",
+        close: "Fermer",
+        text: "J'ai terminé le jour {day} sur 7 du défi vegan7 ! 💪🌱 Rejoins-moi :",
+        textFinal: "J'ai terminé tout le défi vegan en 7 jours ! 🏆🌱 Rejoins-moi :"
+      },
       quotes: [
         { headline: "On ne devient pas plus fort en regardant.", sub: "7 jours. Un plan. Plus d'excuses." },
         { headline: "Ton renouveau commence aujourd'hui, pas demain.", sub: "Le jour 1 n'attend pas la motivation parfaite." },
@@ -94,12 +136,26 @@
       day: "Día", min: "min",
       showRecipe: "Ver ingredientes y preparación",
       markDone: "Marcar como hecho", doneLabel: "Hecho",
+      confirmReset: "¿Reiniciar de verdad?",
       noRecipes: "No se encontraron recetas.",
       sending: "Suscribiendo …",
       success: "Casi listo — confirma tu suscripción por correo.",
       genericError: "Error al suscribirse. Inténtalo más tarde.",
       connError: "Fallo de conexión. Inténtalo más tarde.",
       daysDone: "días completados",
+      share: {
+        title: "🎉 ¡Día {day} completado!",
+        titleFinal: "🏆 ¡Reto completado!",
+        subtitle: "Comparte tu progreso con otros.",
+        subtitleFinal: "7 de 7 días — ¡eso merece compartirse!",
+        shareBtn: "Compartir ahora",
+        whatsapp: "Compartir por WhatsApp",
+        copy: "Copiar texto",
+        copied: "¡Copiado!",
+        close: "Cerrar",
+        text: "¡Acabo de completar el día {day} de 7 del reto vegan7! 💪🌱 Únete:",
+        textFinal: "¡Completé todo el reto vegano de 7 días! 🏆🌱 Únete:"
+      },
       quotes: [
         { headline: "No te haces más fuerte mirando.", sub: "7 días. Un plan. Sin más excusas." },
         { headline: "Tu regreso empieza hoy, no mañana.", sub: "El día 1 no espera al ánimo perfecto." },
@@ -129,9 +185,12 @@
     localStorage.setItem(PROGRESS_KEY, JSON.stringify(days));
   }
 
+  var cachedRecipes = null;
+
   function toggleDay(day) {
     var progress = getProgress();
     var idx = progress.indexOf(day);
+    var wasNotDone = idx === -1;
     if (idx === -1) {
       progress.push(day);
     } else {
@@ -139,9 +198,79 @@
     }
     setProgress(progress);
     renderRing();
-    renderDayCards();
+    if (cachedRecipes && document.querySelector("[data-plan]")) {
+      renderPlan(cachedRecipes);
+    } else {
+      renderDayCards();
+    }
+    if (wasNotDone) {
+      openShareModal(day, day === 7);
+    }
   }
   window.toggleDay = toggleDay;
+
+  function buildShareText(day, isFinal) {
+    var tmpl = isFinal ? T.share.textFinal : T.share.text.replace("{day}", day);
+    var url = window.location.origin + "/" + CURRENT_LANG + "/";
+    return tmpl + " " + url;
+  }
+
+  function openShareModal(day, isFinal) {
+    var existing = document.getElementById("share-overlay");
+    if (existing) existing.remove();
+
+    var text = buildShareText(day, isFinal);
+    var url = window.location.origin + "/" + CURRENT_LANG + "/";
+    var title = isFinal ? T.share.titleFinal : T.share.title.replace("{day}", day);
+    var subtitle = isFinal ? T.share.subtitleFinal : T.share.subtitle;
+
+    var overlay = document.createElement("div");
+    overlay.id = "share-overlay";
+    overlay.className = "share-overlay" + (isFinal ? " share-final" : "");
+    overlay.innerHTML =
+      '<div class="share-modal">' +
+      '<div class="share-emoji">' + (isFinal ? "🏆" : "🎉") + "</div>" +
+      "<h3>" + title + "</h3>" +
+      "<p>" + subtitle + "</p>" +
+      '<button class="cta share-native-btn" style="width:100%;margin-top:16px;">' + T.share.shareBtn + "</button>" +
+      '<a class="cta secondary share-whatsapp-btn" style="width:100%;margin-top:10px;display:block;text-align:center;text-decoration:none;">' + T.share.whatsapp + "</a>" +
+      '<button class="cta secondary share-copy-btn" style="width:100%;margin-top:10px;">' + T.share.copy + "</button>" +
+      '<button class="share-close-btn">' + T.share.close + "</button>" +
+      "</div>";
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) overlay.remove();
+    });
+    overlay.querySelector(".share-close-btn").addEventListener("click", function () {
+      overlay.remove();
+    });
+
+    overlay.querySelector(".share-native-btn").addEventListener("click", function () {
+      if (navigator.share) {
+        navigator.share({ text: text, url: url }).catch(function () {});
+      } else {
+        overlay.querySelector(".share-whatsapp-btn").scrollIntoView({ behavior: "smooth" });
+      }
+    });
+
+    var waLink = overlay.querySelector(".share-whatsapp-btn");
+    waLink.href = "https://wa.me/?text=" + encodeURIComponent(text);
+    waLink.target = "_blank";
+    waLink.rel = "noopener";
+
+    overlay.querySelector(".share-copy-btn").addEventListener("click", function (e) {
+      var btn = e.target;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = T.share.copied;
+          setTimeout(function () {
+            btn.textContent = T.share.copy;
+          }, 1800);
+        });
+      }
+    });
+  }
 
   function renderRing() {
     var ringEl = document.querySelector("[data-ring]");
@@ -231,14 +360,58 @@
       html += "</div>";
 
       html +=
-        '<button class="cta ' + (isDone ? "" : "secondary") + '" style="margin-top:12px;width:100%" onclick="event.stopPropagation(); toggleDay(' +
-        day +
-        ')">' +
+        '<button class="cta ' + (isDone ? "" : "secondary") + ' toggle-day-btn" data-day="' +
+        day + '" data-done="' + (isDone ? "1" : "0") + '" style="margin-top:12px;width:100%">' +
         (isDone ? "✓ " + T.doneLabel : T.markDone) +
         "</button>";
       html += "</div>";
     });
     container.innerHTML = html;
+    attachPlanButtonHandlers(container);
+  }
+
+  function attachPlanButtonHandlers(container) {
+    container.querySelectorAll(".toggle-day-btn").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var day = parseInt(btn.getAttribute("data-day"), 10);
+        var isDoneState = btn.getAttribute("data-done") === "1";
+
+        if (!isDoneState) {
+          toggleDay(day);
+          return;
+        }
+
+        if (btn._armed) {
+          clearInterval(btn._armTimer);
+          clearTimeout(btn._armTimeout);
+          btn._armed = false;
+          toggleDay(day);
+          return;
+        }
+
+        btn._armed = true;
+        var seconds = 5;
+        var originalText = btn.textContent;
+        var originalClass = btn.className;
+        btn.textContent = T.confirmReset + " (" + seconds + ")";
+        btn.classList.add("secondary");
+
+        btn._armTimer = setInterval(function () {
+          seconds--;
+          if (seconds > 0) {
+            btn.textContent = T.confirmReset + " (" + seconds + ")";
+          }
+        }, 1000);
+
+        btn._armTimeout = setTimeout(function () {
+          clearInterval(btn._armTimer);
+          btn._armed = false;
+          btn.textContent = originalText;
+          btn.className = originalClass;
+        }, 5000);
+      });
+    });
   }
 
   function renderRecipeDatabase(recipes) {
@@ -349,6 +522,7 @@
     if (document.querySelector("[data-plan]") || document.querySelector("[data-recipes]")) {
       fetchRecipes()
         .then(function (recipes) {
+          cachedRecipes = recipes;
           renderPlan(recipes);
           renderRecipeDatabase(recipes);
         })

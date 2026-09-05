@@ -211,6 +211,32 @@ footer a{ color:var(--grey); text-decoration:underline; margin:0 6px; }
   max-width:1100px; margin:0 auto 50px; padding:0 24px;
 }
 
+.share-overlay{
+  position:fixed; inset:0; z-index:1000;
+  background:rgba(0,0,0,0.65);
+  display:flex; align-items:center; justify-content:center;
+  padding:24px;
+  animation:fadeIn .2s ease;
+}
+.share-modal{
+  background:var(--panel); border:1px solid rgba(62,207,142,0.25);
+  border-radius:20px; padding:32px 28px; max-width:360px; width:100%;
+  text-align:center;
+}
+.share-emoji{ font-size:2.6rem; margin-bottom:10px; }
+.share-modal h3{ font-family:var(--font-display); font-size:1.3rem; margin-bottom:8px; }
+.share-modal p{ color:var(--grey); font-size:0.9rem; }
+.share-close-btn{
+  background:none; border:none; color:var(--grey); font-size:0.8rem;
+  margin-top:14px; cursor:pointer; text-decoration:underline;
+}
+.share-final .share-modal{
+  border-color:rgba(62,207,142,0.5);
+  background:linear-gradient(160deg, #16301f 0%, #1C2024 60%);
+}
+.share-final .share-emoji{ font-size:3.2rem; }
+@keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+
 .fake-banner{
   display:flex; align-items:center; gap:20px;
   background:linear-gradient(120deg, #16301f 0%, #1C2024 55%, #14171A 100%);
