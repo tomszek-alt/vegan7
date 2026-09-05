@@ -17,6 +17,8 @@
       markDone: "Als erledigt markieren", doneLabel: "Erledigt",
       confirmReset: "Wirklich zurücksetzen?",
       startCta: "Jetzt starten →", continueCta: "Weiter geht's →",
+      resetButton: "Challenge zurücksetzen",
+      resetConfirm: "Wirklich die gesamte Challenge zurücksetzen? Dein gesamter Fortschritt geht verloren.",
       noRecipes: "Keine Rezepte gefunden.",
       sending: "Wird angemeldet …",
       success: "Fast geschafft — bitte bestätige deine Anmeldung per E-Mail.",
@@ -65,6 +67,8 @@
       markDone: "Mark as done", doneLabel: "Done",
       confirmReset: "Really reset?",
       startCta: "Start now →", continueCta: "Continue →",
+      resetButton: "Reset challenge",
+      resetConfirm: "Really reset the entire challenge? All your progress will be lost.",
       noRecipes: "No recipes found.",
       sending: "Signing up …",
       success: "Almost there — please confirm your signup by email.",
@@ -103,6 +107,8 @@
       markDone: "Marquer comme fait", doneLabel: "Fait",
       confirmReset: "Vraiment réinitialiser ?",
       startCta: "Commencer →", continueCta: "Continuer →",
+      resetButton: "Réinitialiser le défi",
+      resetConfirm: "Vraiment réinitialiser tout le défi ? Toute ta progression sera perdue.",
       noRecipes: "Aucune recette trouvée.",
       sending: "Inscription en cours …",
       success: "Presque terminé — confirme ton inscription par e-mail.",
@@ -141,6 +147,8 @@
       markDone: "Marcar como hecho", doneLabel: "Hecho",
       confirmReset: "¿Reiniciar de verdad?",
       startCta: "Empezar →", continueCta: "Continuar →",
+      resetButton: "Reiniciar el reto",
+      resetConfirm: "¿Reiniciar todo el reto? Se perderá todo tu progreso.",
       noRecipes: "No se encontraron recetas.",
       sending: "Suscribiendo …",
       success: "Casi listo — confirma tu suscripción por correo.",
@@ -534,12 +542,35 @@
     });
   }
 
+  function resetChallenge() {
+    if (window.confirm(T.resetConfirm)) {
+      try {
+        localStorage.removeItem("vegan7_progress");
+        localStorage.removeItem("vegan7_lang");
+      } catch (e) {}
+      window.location.href = "/";
+    }
+  }
+  window.resetChallenge = resetChallenge;
+
+  function injectResetButton() {
+    var planGrid = document.querySelector("[data-plan]");
+    if (!planGrid || document.getElementById("reset-challenge-wrap")) return;
+    var wrap = document.createElement("div");
+    wrap.id = "reset-challenge-wrap";
+    wrap.style.textAlign = "center";
+    wrap.style.marginTop = "8px";
+    wrap.innerHTML = '<button class="reset-challenge-btn" onclick="resetChallenge()">' + T.resetButton + "</button>";
+    planGrid.insertAdjacentElement("afterend", wrap);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     renderRing();
     renderDayCards();
     renderFakeBanner();
     applyProgressAwareHomepage();
     initNewsletterForm();
+    injectResetButton();
 
     if (document.querySelector("[data-plan]") || document.querySelector("[data-recipes]")) {
       fetchRecipes()
