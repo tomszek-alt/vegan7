@@ -11,6 +11,24 @@
 <link rel="alternate" hreflang="fr" href="https://vegan7.de/fr/">
 <link rel="alternate" hreflang="es" href="https://vegan7.de/es/">
 <link rel="alternate" hreflang="x-default" href="https://vegan7.de/de/">
+<script>
+(function () {
+  var SUPPORTED = ["de", "en", "fr", "es"];
+  try {
+    var storedLang = localStorage.getItem("vegan7_lang");
+    var progressRaw = localStorage.getItem("vegan7_progress");
+    var hasProgress = false;
+    try {
+      hasProgress = JSON.parse(progressRaw || "[]").length > 0;
+    } catch (e2) {}
+
+    if (hasProgress || storedLang) {
+      var target = SUPPORTED.indexOf(storedLang) !== -1 ? storedLang : "de";
+      window.location.replace("/" + target + "/");
+    }
+  } catch (e) {}
+})();
+</script>
 <style>
   .lang-picker{
     min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;

@@ -6,6 +6,9 @@
     return ["de", "en", "fr", "es"].indexOf(seg) !== -1 ? seg : "de";
   })();
   var DATA_URL = "/data/rezepte." + CURRENT_LANG + ".json";
+  try {
+    localStorage.setItem("vegan7_lang", CURRENT_LANG);
+  } catch (e) {}
 
   var I18N = {
     de: {
