@@ -98,6 +98,23 @@ nav.main .links a.active{ color:var(--white); }
 .dcard h3{ font-size:1rem; margin-bottom:6px; }
 .dcard p{ color:var(--grey); font-size:0.85rem; }
 
+.step-card{ cursor:pointer; user-select:none; }
+.step-chevron{
+  color:var(--grey); font-size:0.9rem; transition:transform .2s ease;
+}
+.step-card.expanded .step-chevron{ transform:rotate(180deg); color:var(--mint); }
+.step-detail{
+  max-height:0; overflow:hidden; opacity:0; margin-top:0;
+  transition:max-height .25s ease, opacity .2s ease, margin-top .25s ease;
+  color:var(--white) !important; opacity:0.85; font-size:0.85rem; padding-top:0;
+  border-top:0 solid transparent;
+}
+.step-card.expanded .step-detail{
+  max-height:200px; opacity:0.85; margin-top:10px; padding-top:10px;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.step-card:hover{ border-color:rgba(62,207,142,0.3); }
+
 /* Recipe cards */
 .rcard{
   background:var(--panel); border-radius:14px; padding:18px;
