@@ -195,7 +195,7 @@
     for (var day = 1; day <= 7; day++) {
       var meals = byDay[day] || [];
       var isDone = progress.indexOf(day) !== -1;
-      html += '<div class="dcard" data-day="' + day + '" id="tag-' + day + '">';
+      html += '<div class="dcard plan-card" data-day="' + day + '" id="tag-' + day + '" onclick="if(event.target.tagName !== \'BUTTON\') toggleDay(' + day + ')">';
       html += '<div class="dcard-top"><div class="badge">' + day + "</div>";
       html += '<span class="check" style="display:' + (isDone ? "inline" : "none") + '">✓</span></div>';
       html += "<h3>" + T.day + " " + day + "</h3>";
