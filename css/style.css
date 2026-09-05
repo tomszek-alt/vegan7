@@ -115,9 +115,19 @@ nav.main .links a.active{ color:var(--white); }
 }
 .step-card:hover{ border-color:rgba(62,207,142,0.3); }
 
+.plan-card.expanded .plan-detail{
+  max-height:1600px;
+}
+.plan-meal-head{
+  display:flex; align-items:center; flex-wrap:wrap; gap:4px;
+  color:var(--white); font-size:0.88rem; margin-bottom:6px;
+}
+.plan-detail ul{ margin:0 0 8px 18px; color:var(--grey); font-size:0.83rem; }
+.plan-detail .zubereitung-inline{ color:var(--white) !important; opacity:0.85; font-size:0.83rem; }
+
 .plan-card{ cursor:pointer; }
 .plan-card:hover{ border-color:rgba(62,207,142,0.3); }
-.plan-card:active{ transform:scale(0.99); }
+.plan-card:active{ transform:scale(0.995); }
 
 /* Recipe cards */
 .rcard{

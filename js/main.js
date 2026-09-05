@@ -195,15 +195,32 @@
     for (var day = 1; day <= 7; day++) {
       var meals = byDay[day] || [];
       var isDone = progress.indexOf(day) !== -1;
-      html += '<div class="dcard plan-card" data-day="' + day + '" id="tag-' + day + '" onclick="if(event.target.tagName !== \'BUTTON\') toggleDay(' + day + ')">';
+      html += '<div class="dcard plan-card step-card" data-day="' + day + '" id="tag-' + day + '" onclick="this.classList.toggle(\'expanded\')">';
       html += '<div class="dcard-top"><div class="badge">' + day + "</div>";
-      html += '<span class="check" style="display:' + (isDone ? "inline" : "none") + '">✓</span></div>';
+      html += '<span class="check" style="display:' + (isDone ? "inline" : "none") + '">✓</span>';
+      html += '<span class="step-chevron">▾</span></div>';
       html += "<h3>" + T.day + " " + day + "</h3>";
       meals.forEach(function (m) {
         html += "<p><strong>" + escapeHtml(m.mahlzeit) + ":</strong> " + escapeHtml(m.titel) + "</p>";
       });
+
+      html += '<div class="step-detail plan-detail">';
+      meals.forEach(function (m, idx) {
+        html += '<div class="plan-meal-detail"' + (idx > 0 ? ' style="margin-top:14px;"' : "") + '>';
+        html += '<div class="plan-meal-head"><strong>' + escapeHtml(m.mahlzeit) + ": " + escapeHtml(m.titel) + '</strong>';
+        html += '<span class="tag-pill" style="margin-left:8px;">' + m.zeit + " " + T.min + "</span></div>";
+        html += "<ul>";
+        m.zutaten.forEach(function (z) {
+          html += "<li>" + escapeHtml(z) + "</li>";
+        });
+        html += "</ul>";
+        html += '<p class="zubereitung-inline">' + escapeHtml(m.zubereitung) + "</p>";
+        html += "</div>";
+      });
+      html += "</div>";
+
       html +=
-        '<button class="cta secondary" style="margin-top:12px;width:100%" onclick="toggleDay(' +
+        '<button class="cta secondary" style="margin-top:12px;width:100%" onclick="event.stopPropagation(); toggleDay(' +
         day +
         ')">' +
         (isDone ? T.markOpen : T.markDone) +
