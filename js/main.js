@@ -16,6 +16,7 @@
       showRecipe: "Zutaten & Zubereitung anzeigen",
       markDone: "Als erledigt markieren", doneLabel: "Erledigt",
       confirmReset: "Wirklich zurücksetzen?",
+      startCta: "Jetzt starten →", continueCta: "Weiter geht's →",
       noRecipes: "Keine Rezepte gefunden.",
       sending: "Wird angemeldet …",
       success: "Fast geschafft — bitte bestätige deine Anmeldung per E-Mail.",
@@ -63,6 +64,7 @@
       showRecipe: "Show ingredients & steps",
       markDone: "Mark as done", doneLabel: "Done",
       confirmReset: "Really reset?",
+      startCta: "Start now →", continueCta: "Continue →",
       noRecipes: "No recipes found.",
       sending: "Signing up …",
       success: "Almost there — please confirm your signup by email.",
@@ -100,6 +102,7 @@
       showRecipe: "Voir ingrédients & préparation",
       markDone: "Marquer comme fait", doneLabel: "Fait",
       confirmReset: "Vraiment réinitialiser ?",
+      startCta: "Commencer →", continueCta: "Continuer →",
       noRecipes: "Aucune recette trouvée.",
       sending: "Inscription en cours …",
       success: "Presque terminé — confirme ton inscription par e-mail.",
@@ -137,6 +140,7 @@
       showRecipe: "Ver ingredientes y preparación",
       markDone: "Marcar como hecho", doneLabel: "Hecho",
       confirmReset: "¿Reiniciar de verdad?",
+      startCta: "Empezar →", continueCta: "Continuar →",
       noRecipes: "No se encontraron recetas.",
       sending: "Suscribiendo …",
       success: "Casi listo — confirma tu suscripción por correo.",
@@ -513,10 +517,28 @@
     });
   }
 
+  function applyProgressAwareHomepage() {
+    var onboardingEls = document.querySelectorAll(".onboarding-only");
+    if (!onboardingEls.length) return;
+    var progress = getProgress();
+    var label = progress.length > 0 ? T.continueCta : T.startCta;
+
+    if (progress.length > 0) {
+      onboardingEls.forEach(function (el) {
+        el.style.display = "none";
+      });
+    }
+
+    document.querySelectorAll(".cta-dynamic-label").forEach(function (el) {
+      el.textContent = label;
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     renderRing();
     renderDayCards();
     renderFakeBanner();
+    applyProgressAwareHomepage();
     initNewsletterForm();
 
     if (document.querySelector("[data-plan]") || document.querySelector("[data-recipes]")) {

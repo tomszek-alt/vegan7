@@ -62,6 +62,17 @@ nav.main .links a.active{ color:var(--white); }
 .cta.secondary{ background:transparent; border:1px solid rgba(255,255,255,0.15); color:var(--white); }
 
 .ring-card{ background:var(--panel); border-radius:20px; padding:26px; border:1px solid rgba(255,255,255,0.06); }
+.ring-clickable{ cursor:pointer; transition:border-color .15s; max-width:340px; margin:0 auto; }
+.ring-clickable:hover{ border-color:rgba(62,207,142,0.4); }
+.ring-go{
+  display:block; text-align:center; margin-top:14px; color:var(--mint);
+  font-weight:600; text-decoration:none; font-size:0.9rem;
+}
+.start-block{
+  max-width:1100px; margin:0 auto 30px; padding:0 24px;
+  display:flex; flex-direction:column; gap:20px; align-items:center;
+}
+.start-block .fake-banner{ width:100%; max-width:600px; }
 .ring{
   width:140px; height:140px; margin:0 auto 16px; border-radius:50%;
   display:flex; align-items:center; justify-content:center; position:relative;

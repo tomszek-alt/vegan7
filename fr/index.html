@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>vegan7 — Le défi vegan en 7 jours</title>
 <meta name="description" content="Un plan clair de 7 jours pour passer à l'alimentation végane. Recettes, listes de courses et suivi quotidien.">
-<link rel="stylesheet" href="/css/style.css?v=8">
+<link rel="stylesheet" href="/css/style.css?v=9">
 <meta name="ca-pub" content="ca-pub-4937837635392557">
 <link rel="alternate" hreflang="de" href="https://vegan7.de/de/">
 <link rel="alternate" hreflang="en" href="https://vegan7.de/en/">
@@ -25,24 +25,14 @@
   <div class="lang-switch"><a href="/de/">DE</a> <a href="/en/">EN</a> <a href="/fr/" class="active">FR</a> <a href="/es/">ES</a></div>
 </nav>
 
-<section class="hero">
+<section class="hero" style="grid-template-columns:1fr; padding-bottom:10px;">
   <div>
     <h1>Le défi vegan<br>en <span class="accent">7 jours</span>.</h1>
-    <p>Un plan clair plutôt que de vagues résolutions. Une tâche, une recette, une case cochée chaque jour — sans tout bouleverser dans ta vie.</p>
-    <a href="/fr/plan.html" class="cta">Commencer →</a>
-  </div>
-  <div class="ring-card">
-    <div class="ring" data-ring>
-      <div class="ring-text">
-        <div class="big">0/7</div>
-        <div class="small">jours réussis</div>
-      </div>
-    </div>
-    <p class="hint">Ta progression est enregistrée localement dans ton navigateur.</p>
+    <p class="onboarding-only">Un plan clair plutôt que de vagues résolutions. Une tâche, une recette, une case cochée chaque jour — sans tout bouleverser dans ta vie.</p>
   </div>
 </section>
 
-<div class="ad-slot">
+<section class="start-block">
   <div class="fake-banner">
     <div class="fb-icon">💪</div>
     <div class="fb-text">
@@ -50,8 +40,21 @@
       <div class="fb-headline">On ne devient pas plus fort en regardant.</div>
       <div class="fb-sub">7 jours. Un plan. Plus d'excuses.</div>
     </div>
-    <a href="/fr/plan.html" class="fb-cta">Commencer →</a>
+    <a href="/fr/plan.html" class="fb-cta cta-dynamic-label">Commencer →</a>
   </div>
+  <div class="ring-card ring-clickable" onclick="window.location.href='/fr/plan.html'">
+    <div class="ring" data-ring>
+      <div class="ring-text">
+        <div class="big">0/7</div>
+        <div class="small">jours réussis</div>
+      </div>
+    </div>
+    <p class="hint">Ta progression est enregistrée localement dans ton navigateur.</p>
+    <a class="ring-go cta-dynamic-label" href="/fr/plan.html">Commencer →</a>
+  </div>
+</section>
+
+<div class="ad-slot">
   <ins class="adsbygoogle"
        style="display:block; width:100%; margin-top:16px;"
        data-ad-client="ca-pub-4937837635392557"
@@ -60,7 +63,9 @@
        data-full-width-responsive="true"></ins>
 </div>
 
-<section class="section">
+
+
+<section class="section onboarding-only">
   <div class="section-head">
     <h2>Comment ça marche</h2>
   </div>
@@ -104,6 +109,6 @@
 </footer>
 
 <script src="/js/cookie-consent.js?v=1"></script>
-<script src="/js/main.js?v=9"></script>
+<script src="/js/main.js?v=10"></script>
 </body>
 </html>
