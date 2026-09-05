@@ -149,6 +149,20 @@ nav.main .links a.active{ color:var(--white); }
 }
 .reset-challenge-btn:hover{ background:rgba(232,99,90,0.08); border-color:rgba(232,99,90,0.5); }
 
+.shopping-modal{ max-width:420px; max-height:78vh; display:flex; flex-direction:column; }
+.shopping-modal h3{ text-align:center; }
+.shopping-modal p{ text-align:center; }
+.shopping-list{
+  overflow-y:auto; margin-top:6px; max-height:48vh; text-align:left;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.shopping-item{
+  display:flex; align-items:center; gap:10px; padding:10px 2px;
+  border-bottom:1px solid rgba(255,255,255,0.06); font-size:0.88rem; cursor:pointer;
+}
+.shopping-item input{ width:18px; height:18px; accent-color:var(--mint); flex-shrink:0; }
+.checked-text{ text-decoration:line-through; color:var(--grey); }
+
 /* Recipe cards */
 .rcard{
   background:var(--panel); border-radius:14px; padding:18px;

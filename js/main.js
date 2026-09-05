@@ -19,6 +19,7 @@
       startCta: "Jetzt starten →", continueCta: "Weiter geht's →",
       resetButton: "Challenge zurücksetzen",
       resetConfirm: "Wirklich die gesamte Challenge zurücksetzen? Dein gesamter Fortschritt geht verloren.",
+      shopping: { title: "Einkaufsliste für die Woche", openBtn: "🛒 Einkaufsliste anzeigen", itemsLabel: "Zutaten" },
       noRecipes: "Keine Rezepte gefunden.",
       sending: "Wird angemeldet …",
       success: "Fast geschafft — bitte bestätige deine Anmeldung per E-Mail.",
@@ -69,6 +70,7 @@
       startCta: "Start now →", continueCta: "Continue →",
       resetButton: "Reset challenge",
       resetConfirm: "Really reset the entire challenge? All your progress will be lost.",
+      shopping: { title: "Weekly shopping list", openBtn: "🛒 View shopping list", itemsLabel: "items" },
       noRecipes: "No recipes found.",
       sending: "Signing up …",
       success: "Almost there — please confirm your signup by email.",
@@ -109,6 +111,7 @@
       startCta: "Commencer →", continueCta: "Continuer →",
       resetButton: "Réinitialiser le défi",
       resetConfirm: "Vraiment réinitialiser tout le défi ? Toute ta progression sera perdue.",
+      shopping: { title: "Liste de courses de la semaine", openBtn: "🛒 Voir la liste de courses", itemsLabel: "articles" },
       noRecipes: "Aucune recette trouvée.",
       sending: "Inscription en cours …",
       success: "Presque terminé — confirme ton inscription par e-mail.",
@@ -149,6 +152,7 @@
       startCta: "Empezar →", continueCta: "Continuar →",
       resetButton: "Reiniciar el reto",
       resetConfirm: "¿Reiniciar todo el reto? Se perderá todo tu progreso.",
+      shopping: { title: "Lista de la compra semanal", openBtn: "🛒 Ver lista de la compra", itemsLabel: "artículos" },
       noRecipes: "No se encontraron recetas.",
       sending: "Suscribiendo …",
       success: "Casi listo — confirma tu suscripción por correo.",
@@ -542,6 +546,110 @@
     });
   }
 
+  function getShoppingChecked() {
+    try {
+      return JSON.parse(localStorage.getItem("vegan7_shopping_checked")) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function toggleShoppingChecked(text) {
+    var list = getShoppingChecked();
+    var idx = list.indexOf(text);
+    if (idx === -1) {
+      list.push(text);
+    } else {
+      list.splice(idx, 1);
+    }
+    localStorage.setItem("vegan7_shopping_checked", JSON.stringify(list));
+  }
+
+  function buildShoppingList(recipes) {
+    var counts = {};
+    recipes.forEach(function (r) {
+      r.zutaten.forEach(function (z) {
+        var key = z.trim();
+        counts[key] = (counts[key] || 0) + 1;
+      });
+    });
+    return Object.keys(counts)
+      .sort(function (a, b) {
+        return a.localeCompare(b);
+      })
+      .map(function (text) {
+        return { text: text, count: counts[text] };
+      });
+  }
+
+  function openShoppingListModal() {
+    if (!cachedRecipes) return;
+    var existing = document.getElementById("shopping-overlay");
+    if (existing) existing.remove();
+
+    var items = buildShoppingList(cachedRecipes);
+    var checked = getShoppingChecked();
+
+    var listHtml = items
+      .map(function (it) {
+        var isChecked = checked.indexOf(it.text) !== -1;
+        var label = it.count > 1 ? it.count + "× " + it.text : it.text;
+        return (
+          '<label class="shopping-item"><input type="checkbox" data-item="' +
+          escapeHtml(it.text) +
+          '" ' +
+          (isChecked ? "checked" : "") +
+          '><span class="' +
+          (isChecked ? "checked-text" : "") +
+          '">' +
+          escapeHtml(label) +
+          "</span></label>"
+        );
+      })
+      .join("");
+
+    var overlay = document.createElement("div");
+    overlay.id = "shopping-overlay";
+    overlay.className = "share-overlay";
+    overlay.innerHTML =
+      '<div class="share-modal shopping-modal">' +
+      "<h3>" + T.shopping.title + "</h3>" +
+      '<p style="margin-bottom:6px;">' + items.length + " " + T.shopping.itemsLabel + "</p>" +
+      '<div class="shopping-list">' + listHtml + "</div>" +
+      '<button class="cta secondary share-close-btn" style="width:100%;margin-top:16px;">' + T.share.close + "</button>" +
+      "</div>";
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) overlay.remove();
+    });
+    overlay.querySelector(".share-close-btn").addEventListener("click", function () {
+      overlay.remove();
+    });
+    overlay.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+      cb.addEventListener("change", function () {
+        toggleShoppingChecked(cb.getAttribute("data-item"));
+        cb.nextElementSibling.classList.toggle("checked-text");
+      });
+    });
+  }
+  window.openShoppingListModal = openShoppingListModal;
+
+  function injectShoppingListButton() {
+    var planGrid = document.querySelector("[data-plan]");
+    if (!planGrid || document.getElementById("shopping-list-btn-wrap")) return;
+    var section = planGrid.closest(".section");
+    if (!section) return;
+    var wrap = document.createElement("div");
+    wrap.id = "shopping-list-btn-wrap";
+    wrap.style.cssText = "text-align:center;margin:0 auto 30px;max-width:1100px;padding:0 24px;";
+    wrap.innerHTML =
+      '<button class="cta" style="width:100%;max-width:400px;" onclick="openShoppingListModal()">' +
+      T.shopping.openBtn +
+      "</button>";
+    section.insertAdjacentElement("beforebegin", wrap);
+  }
+
   function resetChallenge() {
     if (window.confirm(T.resetConfirm)) {
       try {
@@ -578,6 +686,7 @@
           cachedRecipes = recipes;
           renderPlan(recipes);
           renderRecipeDatabase(recipes);
+          injectShoppingListButton();
         })
         .catch(function (err) {
           console.error(err);
