@@ -128,6 +128,8 @@ nav.main .links a.active{ color:var(--white); }
 .plan-card{ cursor:pointer; }
 .plan-card:hover{ border-color:rgba(62,207,142,0.3); }
 .plan-card:active{ transform:scale(0.995); }
+.plan-card-done{ opacity:0.7; }
+.plan-card-done:hover{ opacity:1; }
 
 /* Recipe cards */
 .rcard{

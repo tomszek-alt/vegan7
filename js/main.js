@@ -14,7 +14,7 @@
     de: {
       day: "Tag", min: "Min.",
       showRecipe: "Zutaten & Zubereitung anzeigen",
-      markDone: "Als erledigt markieren", markOpen: "Als offen markieren",
+      markDone: "Als erledigt markieren", doneLabel: "Erledigt",
       noRecipes: "Keine Rezepte gefunden.",
       sending: "Wird angemeldet …",
       success: "Fast geschafft — bitte bestätige deine Anmeldung per E-Mail.",
@@ -47,7 +47,7 @@
     en: {
       day: "Day", min: "min",
       showRecipe: "Show ingredients & steps",
-      markDone: "Mark as done", markOpen: "Mark as open",
+      markDone: "Mark as done", doneLabel: "Done",
       noRecipes: "No recipes found.",
       sending: "Signing up …",
       success: "Almost there — please confirm your signup by email.",
@@ -70,7 +70,7 @@
     fr: {
       day: "Jour", min: "min",
       showRecipe: "Voir ingrédients & préparation",
-      markDone: "Marquer comme fait", markOpen: "Marquer comme non fait",
+      markDone: "Marquer comme fait", doneLabel: "Fait",
       noRecipes: "Aucune recette trouvée.",
       sending: "Inscription en cours …",
       success: "Presque terminé — confirme ton inscription par e-mail.",
@@ -93,7 +93,7 @@
     es: {
       day: "Día", min: "min",
       showRecipe: "Ver ingredientes y preparación",
-      markDone: "Marcar como hecho", markOpen: "Marcar como pendiente",
+      markDone: "Marcar como hecho", doneLabel: "Hecho",
       noRecipes: "No se encontraron recetas.",
       sending: "Suscribiendo …",
       success: "Casi listo — confirma tu suscripción por correo.",
@@ -194,11 +194,19 @@
       byDay[r.tag].push(r);
     });
     var progress = getProgress();
+
+    var dayOrder = [1, 2, 3, 4, 5, 6, 7].sort(function (a, b) {
+      var aDone = progress.indexOf(a) !== -1;
+      var bDone = progress.indexOf(b) !== -1;
+      if (aDone === bDone) return a - b;
+      return aDone ? 1 : -1;
+    });
+
     var html = "";
-    for (var day = 1; day <= 7; day++) {
+    dayOrder.forEach(function (day) {
       var meals = byDay[day] || [];
       var isDone = progress.indexOf(day) !== -1;
-      html += '<div class="dcard plan-card step-card" data-day="' + day + '" id="tag-' + day + '" onclick="this.classList.toggle(\'expanded\')">';
+      html += '<div class="dcard plan-card step-card' + (isDone ? " plan-card-done" : "") + '" data-day="' + day + '" id="tag-' + day + '" onclick="this.classList.toggle(\'expanded\')">';
       html += '<div class="dcard-top"><div class="badge">' + day + "</div>";
       html += '<span class="check" style="display:' + (isDone ? "inline" : "none") + '">✓</span>';
       html += '<span class="step-chevron">▾</span></div>';
@@ -223,13 +231,13 @@
       html += "</div>";
 
       html +=
-        '<button class="cta secondary" style="margin-top:12px;width:100%" onclick="event.stopPropagation(); toggleDay(' +
+        '<button class="cta ' + (isDone ? "" : "secondary") + '" style="margin-top:12px;width:100%" onclick="event.stopPropagation(); toggleDay(' +
         day +
         ')">' +
-        (isDone ? T.markOpen : T.markDone) +
+        (isDone ? "✓ " + T.doneLabel : T.markDone) +
         "</button>";
       html += "</div>";
-    }
+    });
     container.innerHTML = html;
   }
 
