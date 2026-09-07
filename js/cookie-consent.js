@@ -2,6 +2,7 @@
   var CONSENT_KEY = "vegan7_cookie_consent";
   var ADSENSE_CLIENT = "ca-pub-4937837635392557";
   var GA_MEASUREMENT_ID = "G-TJQPQLTH4M";
+  var GTM_CONTAINER_ID = "GTM-5QMBSQ78";
 
   var LANG = (function () {
     var seg = window.location.pathname.split("/")[1];
@@ -49,6 +50,17 @@
     gtag("config", GA_MEASUREMENT_ID);
   }
 
+  function loadGTM() {
+    if (window.google_tag_manager || document.getElementById("gtm-script")) return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    var script = document.createElement("script");
+    script.id = "gtm-script";
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_CONTAINER_ID;
+    document.head.appendChild(script);
+  }
+
   function showBanner() {
     var t = BANNER_TEXT[LANG] || BANNER_TEXT.de;
     var b = BUTTON_TEXT[LANG] || BUTTON_TEXT.de;
@@ -67,6 +79,7 @@
       banner.remove();
       loadAdsense();
       loadGoogleAnalytics();
+      loadGTM();
     });
     document.getElementById("cc-decline").addEventListener("click", function () {
       localStorage.setItem(CONSENT_KEY, "denied");
@@ -79,6 +92,7 @@
     if (consent === "granted") {
       loadAdsense();
       loadGoogleAnalytics();
+      loadGTM();
     } else if (consent !== "denied") {
       showBanner();
     }
