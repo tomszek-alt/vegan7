@@ -166,20 +166,20 @@ nav.main .links a.active{ color:var(--white); }
 /* Recipe cards */
 .rcard{
   background:var(--panel); border-radius:14px; padding:18px;
-  border:1px solid rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.06); cursor:pointer;
 }
+.rcard:hover{ border-color:rgba(62,207,142,0.3); }
 .rcard .meta{ display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
 .tag-pill{
   font-size:0.72rem; padding:4px 10px; border-radius:999px;
   background:rgba(255,255,255,0.06); color:var(--grey);
 }
 .tag-pill.mint{ background:rgba(62,207,142,0.15); color:var(--mint); }
-.rcard h3{ font-size:1.02rem; margin-bottom:8px; }
-.rcard details{ margin-top:10px; font-size:0.85rem; color:var(--grey); }
-.rcard summary{ cursor:pointer; color:var(--mint); font-size:0.85rem; margin-top:6px; list-style:none; }
-.rcard summary::-webkit-details-marker{ display:none; }
-.rcard ul{ margin:8px 0 8px 18px; }
-.rcard .zubereitung{ margin-top:8px; color:var(--white); opacity:0.85; }
+.rcard-title-row{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.rcard h3{ font-size:1.02rem; }
+.rcard-detail ul{ margin:8px 0 8px 18px; color:var(--grey); font-size:0.85rem; }
+.rcard-detail .zubereitung{ margin-top:8px; color:var(--white) !important; opacity:0.85; font-size:0.85rem; }
+.rcard.expanded .step-detail{ max-height:600px; }
 
 /* Filters */
 .filters{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }

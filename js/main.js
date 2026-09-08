@@ -445,22 +445,22 @@
       });
       var html = "";
       filtered.forEach(function (r) {
-        html += '<div class="rcard" id="' + r.id + '">';
+        html += '<div class="rcard step-card" id="' + r.id + '" onclick="this.classList.toggle(\'expanded\')">';
         html += '<div class="meta">';
         html += '<span class="tag-pill mint">' + T.day + " " + r.tag + "</span>";
         html += '<span class="tag-pill">' + escapeHtml(r.mahlzeit) + "</span>";
         html += '<span class="tag-pill">' + r.zeit + " " + T.min + "</span>";
         html += '<span class="tag-pill">' + escapeHtml(r.schwer) + "</span>";
         html += "</div>";
-        html += "<h3>" + escapeHtml(r.titel) + "</h3>";
-        html += "<details><summary>" + T.showRecipe + "</summary>";
+        html += '<div class="rcard-title-row"><h3>' + escapeHtml(r.titel) + '</h3><span class="step-chevron">▾</span></div>';
+        html += '<div class="step-detail rcard-detail">';
         html += "<ul>";
         r.zutaten.forEach(function (z) {
           html += "<li>" + escapeHtml(z) + "</li>";
         });
         html += "</ul>";
-        html += '<div class="zubereitung">' + escapeHtml(r.zubereitung) + "</div>";
-        html += "</details></div>";
+        html += '<p class="zubereitung">' + escapeHtml(r.zubereitung) + "</p>";
+        html += "</div></div>";
       });
       container.innerHTML = html || '<p style="color:var(--grey)">' + T.noRecipes + "</p>";
     }
